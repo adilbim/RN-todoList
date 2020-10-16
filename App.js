@@ -1,22 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 import Header from './src/components/header';
+import ListElement from './src/components/small-components/listElement';
 
 export default function App() {
+  const listElements = [{
+    text: 'Code',
+    details: 'work',
+    checked: true,
+  }, {
+    text: 'Eat',
+    details: '3 meals a day',
+    checked: false,
+  }, {
+    text: 'Sleep',
+    details: 'do not pass midnight',
+    checked: false,
+  }]
+  const todos = listElements.map((elm, i) => (<ListElement key={i} {...elm} />))
   return (
     <View style={styles.container}>
       <Header />
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <ScrollView style={styles.scrollView}>
+        {todos}
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 25,
     flex: 1,
-    backgroundColor: 'green',
+    backgroundColor: '#e8ebf5',
+    paddingBottom: 20,
   },
+  scrollView: {
+    padding: 20,
+    height: 50,
+  }
 });
