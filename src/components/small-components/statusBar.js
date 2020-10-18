@@ -1,17 +1,38 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesomeIcons from 'react-native-vector-icons/FontAwesome';
 
+export default function StatusBar({changeColorTheme}) {
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
-const checkIcon = <Feather name="check-circle" size={50} color="#fff" />;
-const addIcon = <Ionicons name="ios-add-circle-outline" size={55} color="#fff" />;
+  function toggleThemeColor() {
+    changeColorTheme({type: !isDarkMode ? 'dark' : 'light'});
+    setIsDarkMode(!isDarkMode);
+  }
 
-export default function StatusBar() {
+  const checkIcon = <Feather name="check-circle" size={45} color="#fff" />;
+  const sunIcon =
+    <Ionicons
+        name="weather-sunny" 
+        size={45} 
+        color="#fff" 
+        onPress={() => toggleThemeColor()}
+    />;
+  const moonIcon =
+    <FontAwesomeIcons
+       name="moon-o" 
+       size={45} 
+       color="#fff"
+       onPress={() => toggleThemeColor()}
+    />;
+  const modeIcon = isDarkMode ? sunIcon : moonIcon;
+
   return (
     <View style={styles.statusBar}>
-      {checkIcon}
-      {addIcon}
+        {checkIcon}
+        {modeIcon}
     </View>
   );
 }
