@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import { StyleSheet, ScrollView, View } from 'react-native';
 import Header from './src/components/header';
 import ListElement from './src/components/small-components/listElement';
+import { Ionicons } from '@expo/vector-icons';
 
 const light = {
   foreground: '#f6984a',
@@ -57,6 +58,12 @@ export default function App() {
     scrollView: {
       padding: 20,
       height: 50,
+    },
+    addTodoButton: {
+      zIndex: 5,
+      flexDirection: 'row-reverse',
+      margin: 30,
+      marginBottom: 10,
     }
   });
 
@@ -72,6 +79,13 @@ export default function App() {
       <ScrollView style={styles.scrollView}>
         {todos}
       </ScrollView>
+      <View style={styles.addTodoButton}>
+        <Ionicons
+          name="ios-add-circle"
+          size={70}
+          color={themeColors.foreground}
+          onPress={() => console.log('affffa')}/>
+      </View>
     </View>
   );
 }
