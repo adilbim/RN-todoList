@@ -61,9 +61,14 @@ export default function App() {
   });
 
   const todos = listElements.map((elm, i) => (<ListElement key={i} {...elm} {...themeColors} />))
+  const todosInfo = {
+    total: listElements.length,
+    checked: listElements.filter((elm) => elm.checked === true ).length
+  }
+
   return (
     <View style={styles.container}>
-      <Header {...themeColors} changeColorTheme={dispatch} />
+      <Header {...todosInfo} {...themeColors} changeColorTheme={dispatch} />
       <ScrollView style={styles.scrollView}>
         {todos}
       </ScrollView>

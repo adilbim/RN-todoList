@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import StatusBar from './small-components/statusBar';
 
-export default function Header({changeColorTheme ,foreground, istElementBackground}) {
+export default function Header({total, checked, changeColorTheme ,foreground, istElementBackground}) {
   const styles = StyleSheet.create({
     container: {
       backgroundColor: foreground,
@@ -22,8 +22,8 @@ export default function Header({changeColorTheme ,foreground, istElementBackgrou
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerTitle}>To-dos</Text>
-      <StatusBar changeColorTheme={changeColorTheme} />
+      <Text style={styles.headerTitle}>To-Do List</Text>
+      <StatusBar {...{total, checked}} changeColorTheme={changeColorTheme} />
     </View>
   );
 }
